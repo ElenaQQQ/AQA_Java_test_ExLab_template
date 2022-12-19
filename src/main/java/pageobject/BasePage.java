@@ -1,11 +1,12 @@
 package pageobject;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import static driver.driver.*;
+
+import static driver.driver.getDriver;
+
 public class BasePage {
 
     protected WebDriver driver;
@@ -14,53 +15,19 @@ public class BasePage {
 
     public BasePage() {
         driver = getDriver();
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
+
+    //Локаторы, относящиеся ко всем страницам сайта. В случае лендинга - к хедеру и футеру
 
     @FindBy(id = "logo_mobile")
     public WebElement logo;
 
-    @FindBy(xpath = "//button[@class='sc-ftvSup llXOnR']")
-    public WebElement menuButton;
+    //Методы для данной страницы, которые используются тестами в классе BasePageTest
 
-    @FindBy(xpath = "//a[@href='#about']")
-    public WebElement menuAbout;
-
-    @FindBy(xpath = "//a[@href='#projects']")
-    public WebElement menuProjects;
-
-    @FindBy(xpath = "//a[@href='#mentors']")
-    public WebElement menuMentors;
-
-    @FindBy(xpath = "//a[@href='#startup']")
-    public WebElement menuStartUp;
-
-    @FindBy(xpath = "//div[@class='sc-fnykZs fEkGUM']")
-    public WebElement menuSunIcon;
-
-    public BasePage open () {
+    public BasePage open() {
         driver.get(baseUrl);
         return this;
-    }
-
-    public String getTitle() {
-        return driver.getTitle();
-    }
-
-    public String getUrl() {
-        return driver.getCurrentUrl();
-    }
-
-//    public String getBackgroundClass() {
-//        return menuSunIcon.getClass();
-//    }
-
-//    public WebElement getLogo() {
-//        return logo;
-//    }
-
-    public String getMenuLink(WebElement locator){
-        return locator.getAttribute("data-scroll-to");
     }
 }
 

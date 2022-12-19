@@ -17,4 +17,6 @@ import java.time.Duration;
 public class LandingPageTest extends BasePageTest {
 
 
+    //Тесты для этой страницы. Они обращаются к локаторам и методам класса LandingPage
+
 }
